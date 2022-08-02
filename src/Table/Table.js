@@ -1,6 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 
+function adjustDate(date){
+  date = date.toString();
+  return (date.substring(0,4) + "-" + date.substring(4,6) + "-" + date.substring(6,8));
+}
+
 const Table = () => {
   const [covidData, setCovidData] = useState([]);
   useEffect(() => {
@@ -14,24 +19,27 @@ const Table = () => {
     )
   })
 
-  const display = covidData.map((data)=>{
-    if (data.date >= '20210101' && data.date <= '20210131') return (
+  const display = covidData.map((data) => {
+    if (data.date >= '20210101' && data.date <= '20210131') 
+    return (
       <tr>
-        <td>{data.date}</td>
+        <td>{adjustDate(data.date)}</td>
         <td>{data.positive}</td>
         <td>{data.hospitalizedCumulative}</td>
       </tr>
     )
   });
 
-  const displayDate = covidData.map((data)=>{
-    if (data.date >= '20210101' && data.date <= '20210131') return (
-      <th>{data.date}</th>
+  const displayDate = covidData.map((data) => {
+    if (data.date >= '20210101' && data.date <= '20210131') 
+    return (
+      <th>{adjustDate(data.date)}</th>
     )
   });
 
-  const displayData = covidData.map((data)=>{
-    if (data.date >= '20210101' && data.date <= '20210131') return (
+  const displayData = covidData.map((data) => {
+    if (data.date >= '20210101' && data.date <= '20210131') 
+    return (
       <td>{data.positive}</td>
     )
   });
